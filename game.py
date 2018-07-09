@@ -6,8 +6,9 @@ import numpy
 print("Welcome to Reaction Game by Behrad Moniri\n")
 N = int(input("Number of Stimuli:\t"))
 p = float(input("Probability:\t"))
-FileName = input("Results Filename (*.csv):\t")
+time_between_stimuli = float(input("Time between stimuli:\t"))
 
+FileName = input("Results Filename (*.csv):\t")
 # Random Sequence Generation
 sequence = numpy.random.binomial(1, p, size=N)
 
@@ -21,7 +22,7 @@ screen.fill((255, 255, 255))  # Clear Screen
 
 # Show Welcome Text on The Screen:
 font = pygame.font.SysFont('Arial', 20)  # create font
-text = font.render(" Reaction Time by Behrad Moniri from AirLab", 0, (0, 0, 0))  # create green text
+text = font.render(" Reaction Time Game by Behrad Moniri from AirLab", 0, (0, 0, 0))  # create green text
 text_rect = text.get_rect(center=screen.get_rect().center)  # get text (rectangle) size and move to center of screen
 screen.blit(text, text_rect)  # Put Text on Screen
 pygame.display.flip()  # Display the screen
@@ -33,7 +34,7 @@ for x in range(N):
     pygame.display.flip()
 
     # Wait 3 Seconds
-    time.sleep(3)
+    time.sleep(time_between_stimuli)
 
     if sequence[x] == 1:
         pygame.draw.circle(screen, (0, 0, 100), (420, 240), 20)
@@ -83,9 +84,9 @@ while state:
 
 # Save the results
 f = open(FileName, "w")
+f.write("Prob = {}\t Time = {}\n".format(p, time_between_stimuli))
 for i in range(len(sequence)):
     f.write("{}\t{}\n".format(sequence[i], reaction_times[i]))
-f.close()
 
 # End game
 pygame.quit()
