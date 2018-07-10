@@ -18,11 +18,11 @@ reaction_times = []
 # Starting pygame
 pygame.init()
 screen = pygame.display.set_mode((640, 640), pygame.FULLSCREEN)  # Set Screen Size
-screen.fill((255, 255, 255))  # Clear Screen
+screen.fill((0, 0, 0))  # Clear Screen
 
 # Show Welcome Text on The Screen:
 font = pygame.font.SysFont('Arial', 20)  # create font
-text = font.render(" Reaction Time Game by Behrad Moniri from AirLab", 0, (0, 0, 0))  # create green text
+text = font.render(" Reaction Time Game by Behrad Moniri from AirLab", 0, (255, 255, 255))  # create text
 text_rect = text.get_rect(center=screen.get_rect().center)  # get text (rectangle) size and move to center of screen
 screen.blit(text, text_rect)  # Put Text on Screen
 pygame.display.flip()  # Display the screen
@@ -30,18 +30,17 @@ time.sleep(5)  # Wait for 5 Seconds
 
 for x in range(N):
 
-    screen.fill((255, 255, 255))  # Send Screen on Monitor
+    screen.fill((0, 0, 0))  # Send Screen on Monitor
     pygame.display.flip()
 
     # Wait 3 Seconds
     time.sleep(time_between_stimuli)
 
     if sequence[x] == 1:
-        pygame.draw.circle(screen, (0, 0, 100), (420, 240), 20)
+        pygame.draw.circle(screen, (155, 255, 255), (460, 240), 20)
 
     if sequence[x] == 0:
-        pygame.draw.circle(screen, (100, 0, 0), (220, 240), 20)
-
+        pygame.draw.circle(screen, (255, 255, 155), (180, 240), 20)
     # Show Circles
     pygame.display.flip()
     reaction_start = datetime.now()
@@ -65,10 +64,10 @@ for x in range(N):
     print(reaction_end - reaction_start)
 
 # Clear screen
-screen.fill((255, 255, 255))
+screen.fill((0, 0, 0))
 
 # Create goodbye text
-text = font.render("PRESS ANY KEY TO EXIT", 0, (100, 0, 0))
+text = font.render("PRESS ANY KEY TO EXIT", 0, (255, 255, 255))
 text_rect = text.get_rect(center=screen.get_rect().center)
 screen.blit(text, text_rect)
 pygame.display.flip()
