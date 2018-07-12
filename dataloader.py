@@ -1,10 +1,6 @@
-import numpy
-import time
-from datetime import datetime
 import csv
 
-# FileName = input("Name of the file: \t")
-FileName = "res1.csv"
+FileName = input("Name of the file: \t")
 mat = []
 f = open(FileName, "r")
 reader = csv.reader(f)
