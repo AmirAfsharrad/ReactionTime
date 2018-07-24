@@ -3,6 +3,7 @@ from datetime import datetime
 import time
 import numpy
 
+
 print("Welcome to Reaction Game by Behrad Moniri\n")
 N = int(input("Number of Stimuli:\t"))
 p = float(input("Probability:\t"))
@@ -66,12 +67,12 @@ for x in range(N):
 # Clear screen
 screen.fill((0, 0, 0))
 
+
 # Create goodbye text
 text = font.render("PRESS ANY KEY TO EXIT", 0, (255, 255, 255))
 text_rect = text.get_rect(center=screen.get_rect().center)
 screen.blit(text, text_rect)
 pygame.display.flip()
-
 # Wait for key to close program
 state = True
 while state:
