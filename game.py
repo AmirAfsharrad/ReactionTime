@@ -15,6 +15,7 @@ sequence = numpy.random.binomial(1, p, size=N)
 
 # Reaction Times List
 reaction_times = []
+wrong = []
 
 # Starting pygame
 pygame.init()
@@ -47,6 +48,9 @@ for x in range(N):
     reaction_start = datetime.now()
 
     # wait for the correct key press
+
+    iswrong = 0
+
     running = True
     while running:
         for event in pygame.event.get():
@@ -57,13 +61,19 @@ for x in range(N):
                 if event.key == 275 and sequence[x] == 1:
                     reaction_end = datetime.now()
                     running = False
+                if event.key == 275 and sequence[x] == 0:
+                    iswrong = 1
+                if event.key == 276 and sequence[x] == 1:
+                    iswrong = 1
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
     # Save results
     reaction_times.append(reaction_end - reaction_start)
-    print(reaction_end - reaction_start)
+    wrong.append(iswrong)
 
+    print(reaction_end - reaction_start)
+    print(iswrong)
 # Clear screen
 screen.fill((0, 0, 0))
 
@@ -86,7 +96,7 @@ while state:
 f = open(FileName, "w")
 f.write("Prob = {}\t Time = {}\n".format(p, time_between_stimuli))
 for i in range(len(sequence)):
-    f.write("{}\t{}\n".format(sequence[i], reaction_times[i]))
+    f.write("{}\t{}\t{}\n".format(sequence[i], reaction_times[i], wrong[i]))
 
 # End game
 pygame.quit()

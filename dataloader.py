@@ -21,15 +21,24 @@ for row in reader:
 
 times_odd = []
 times_norm = []
+n_odd = []
+n_norm = []
+step = range(len(mat))
 
 for j in range(len(mat)):
     if mat[j][0] == 0:
         times_norm.append(mat[j][1] / 1000)
+        n_norm.append(step[j])
     if mat[j][0] == 1:
         times_odd.append(mat[j][1] / 1000)
-
+        n_odd.append(step[j])
 bins = numpy.linspace(0, 500, 20)
 pyplot.hist(times_odd, bins, alpha=0.5, label='Odd', density=1)
 pyplot.hist(times_norm, bins, alpha=0.5, label='Normal', density=1)
 pyplot.legend(loc='upper right')
+pyplot.show()
+
+pyplot.figure()
+pyplot.plot(n_odd, times_odd)
+pyplot.plot(n_norm, times_norm)
 pyplot.show()
