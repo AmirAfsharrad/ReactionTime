@@ -3,7 +3,7 @@ import numpy
 from matplotlib import pyplot
 
 # FileName = input("Name of the file: \t")
-FileName = "res1.csv"
+FileName = "newres.csv"
 mat = []
 f = open(FileName, "r")
 reader = csv.reader(f)
@@ -16,7 +16,7 @@ for row in reader:
     if i != 0:
         sp = (row[0].split("\t"))
         time = sp[1].split('.')
-        mat.append([int(sp[0]), int(time[1])])
+        mat.append([int(sp[0]), int(time[1]), int(sp[2])])
     i = 1
 
 times_odd = []
@@ -24,7 +24,7 @@ times_norm = []
 n_odd = []
 n_norm = []
 step = range(len(mat))
-
+print(mat)
 for j in range(len(mat)):
     if mat[j][0] == 0:
         times_norm.append(mat[j][1] / 1000)
