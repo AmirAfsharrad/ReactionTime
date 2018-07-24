@@ -50,7 +50,6 @@ for x in range(N):
     # wait for the correct key press
 
     iswrong = 0
-
     running = True
     while running:
         for event in pygame.event.get():
@@ -63,14 +62,19 @@ for x in range(N):
                     running = False
                 if event.key == 275 and sequence[x] == 0:
                     iswrong = 1
+                    wrong_time = datetime.now()
                 if event.key == 276 and sequence[x] == 1:
                     iswrong = 1
+                    wrong_time = datetime.now()
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
     # Save results
     reaction_times.append(reaction_end - reaction_start)
-    wrong.append(iswrong)
+    if iswrong == 1:
+        wrong.append(iswrong)
+    else:
+        wrong.append(0)
 
     print(reaction_end - reaction_start)
     print(iswrong)
